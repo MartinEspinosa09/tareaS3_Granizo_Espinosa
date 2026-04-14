@@ -2,12 +2,12 @@
 
 int main (int argc, char *argv[]) {
 
-    int numEstudiantes, numAsignaturas;
     float sumaEstudiante, sumaAsignatura;
     float notas[5][3];
-    float notaMax= 0;
-    float notaMin= 10;
-    int aprobados=0;
+    float notaMax = 0;
+    float notaMin = 10;
+    int aprobados = 0;
+    int reprobados = 0;
 
     for (int i = 0; i < 5; i++)
     {
@@ -21,18 +21,16 @@ int main (int argc, char *argv[]) {
 
                 if (notas[i][j]<0 || notas[i][j]>10)
                 {
-                    printf("ERROR: LA NOTA DEBE ESTAR EN EL RANGO DE 0 HASTA 10");
+                    printf("ERROR: LA NOTA DEBE ESTAR EN EL RANGO DE 0 HASTA 10\n");
                 }
                 
             } while (notas[i][j]<0 || notas[i][j]>10);
-            
         }
-        
     }
 
     for (int i = 0; i < 5; i++)
     {
-        sumaEstudiante=0;
+        sumaEstudiante = 0;
         printf("\n estudiante %d:\n", i+1);
 
         for (int j = 0; j < 3; j++)
@@ -42,21 +40,21 @@ int main (int argc, char *argv[]) {
         
         printf("el promedio del estudiante es: %.2f\n", sumaEstudiante/3.0);
         
-        if ((sumaEstudiante/3.0)<6)
+        if ((sumaEstudiante/3.0) < 6)
         {
             printf("el estudiante %d a reprobado con un promedio de: %.2f \n", i + 1, sumaEstudiante/3.0);
+            reprobados++;
         }
         else
         {
-            printf("el estudiante %d a aprobado con un promedio de: %2.f \n", i + 1, sumaEstudiante/3.0);
+            printf("el estudiante %d a aprobado con un promedio de: %.2f \n", i + 1, sumaEstudiante/3.0);
             aprobados++;
         }
-        
     }
     
     for (int j = 0; j < 3; j++)
     {
-        sumaAsignatura=0;
+        sumaAsignatura = 0;
         printf("\n Asignatura %d:\n", j+1);
 
         for (int i = 0; i < 5; i++)
@@ -65,31 +63,29 @@ int main (int argc, char *argv[]) {
         }
         
         printf("el promedio de las asignaturas es: %.2f\n", sumaAsignatura/5.0);
-
     }
     
     for (int i = 0; i < 5; i++)
     {
         for (int j = 0; j < 3; j++)
         {
-            if (notas[i][j]>notaMax)
+            if (notas[i][j] > notaMax)
             {
-                notaMax=notas[i][j];
+                notaMax = notas[i][j];
             }
             
-            if (notas[i][j]<notaMin)
+            if (notas[i][j] < notaMin)
             {
-                notaMin=notas[i][j];
+                notaMin = notas[i][j];
             }
-            
         }
-        
     }
+
     printf("\nLa nota maxima de todo el curso es: %.2f", notaMax);
     printf("\nLa nota minima de todo el curso es: %.2f", notaMin);
+    printf("\nEl total de aprobados fue: %d", aprobados);
+    printf("\nEl total de reprobados fue: %d\n", reprobados);
 
-    printf("\n el total de aprobados entre los estudiantes fueron: %d", aprobados);
     return 0;
-
 
 }
